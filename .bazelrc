@@ -1,0 +1,9 @@
+build --incompatible_strict_action_env
+build --incompatible_require_linker_input_cc_api
+build --incompatible_enable_cc_toolchain_resolution
+# build --subcommands 
+build --verbose_failures --test_output=streamed
+build --action_env=CC=clang-17
+
+common --noenable_bzlmod
+build --features cpp20_module

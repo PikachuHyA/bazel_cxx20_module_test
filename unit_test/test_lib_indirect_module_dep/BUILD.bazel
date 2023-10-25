@@ -1,0 +1,18 @@
+cc_library(
+    name = "b",
+    srcs = [
+        "a.cpp",
+    ],
+    copts = ["-std=c++20"],
+    module_interfaces = [
+        "a.cppm",
+        "b.cppm",
+    ],
+)
+
+cc_test(
+    name = "main",
+    srcs = ["main.cpp"],
+    copts = ["-std=c++20"],
+    deps = [":b"],
+)

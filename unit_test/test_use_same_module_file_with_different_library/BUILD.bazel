@@ -1,0 +1,16 @@
+cc_library(
+    name = "foo",
+    hdrs = ["foo.h"],
+    copts = ["-std=c++20"],
+    module_interfaces = ["foo.cppm"],
+)
+
+cc_library(
+    name = "bar",
+    hdrs = ["foo.h"],
+    copts = ["-std=c++20"],
+    module_interfaces = [
+        "bar.cppm",
+        "foo.cppm",
+    ],
+)

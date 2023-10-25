@@ -1,0 +1,11 @@
+cc_test(
+    name = "main",
+    srcs = [
+        "bar.cpp",
+        "bar.h",
+        "foo.cpp",
+        "main.cpp",
+    ],
+    copts = ["-std=c++20"],
+    module_interfaces = ["foo.cppm"],
+)

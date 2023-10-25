@@ -1,0 +1,16 @@
+cc_library(
+    name = "bar",
+    srcs = [
+        "bar.cpp",
+        "foo.h",
+    ],
+)
+
+cc_test(
+    name = "main",
+    srcs = [
+        "bar.cpp",
+        "foo.h",
+        "main.cpp",
+    ],
+)

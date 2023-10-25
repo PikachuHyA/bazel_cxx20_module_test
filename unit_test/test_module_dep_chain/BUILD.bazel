@@ -1,0 +1,10 @@
+cc_test(
+    name = "main",
+    srcs = [
+        "c.cpp",
+        "d_implementation.cpp",
+        "main.cpp",
+    ],
+    copts = ["-std=c++20"],
+    module_interfaces = glob(["*.cppm"]),
+)

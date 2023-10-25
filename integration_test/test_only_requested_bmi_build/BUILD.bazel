@@ -1,0 +1,7 @@
+cc_library(
+    name = "foo",
+    srcs = ["foo.cc"],
+    copts = ["-std=c++20"],
+    features = ["cpp20_module"],
+    module_interfaces = ["foo.cppm"],
+)

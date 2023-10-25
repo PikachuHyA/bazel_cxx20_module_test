@@ -1,0 +1,31 @@
+cc_binary(
+    name = "cc_bar1",
+    srcs = [
+        "bar1.cpp",
+        "foo.cpp",
+    ],
+)
+
+cc_binary(
+    name = "cc_bar2",
+    srcs = [
+        "bar2.cpp",
+        "foo.cpp",
+    ],
+)
+
+cc_test(
+    name = "cxx20_bar1",
+    srcs = [
+        "bar1.cpp",
+        "foo.cpp",
+    ],
+)
+
+cc_test(
+    name = "cxx20_bar2",
+    srcs = [
+        "bar2.cpp",
+        "foo.cpp",
+    ],
+)

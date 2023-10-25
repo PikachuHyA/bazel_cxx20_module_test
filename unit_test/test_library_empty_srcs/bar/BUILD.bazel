@@ -1,0 +1,5 @@
+cc_binary(
+    name = "cc_bar",
+    srcs = ["bar.cpp"],
+    deps = ["//unit_test/test_library_empty_srcs/foo"],
+)

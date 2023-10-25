@@ -1,0 +1,1 @@
+尽量保持和`rules_cc`中`cc_binary`一样的输出布局

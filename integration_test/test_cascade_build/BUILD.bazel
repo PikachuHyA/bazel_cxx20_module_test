@@ -1,0 +1,14 @@
+cc_library(
+    name = "foo",
+    copts = ["-std=c++20"],
+    features = ["cpp20_module"],
+    module_interfaces = ["foo.cc"],
+    deps = [":bar"],
+)
+
+cc_library(
+    name = "bar",
+    copts = ["-std=c++20"],
+    features = ["cpp20_module"],
+    module_interfaces = ["bar.cc"],
+)
