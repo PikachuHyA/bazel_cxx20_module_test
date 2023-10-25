@@ -53,10 +53,21 @@ jobs:
         sudo update-alternatives --config cc
     - name: Check Clang 17
       run: clang-17 -v
-
     - name: Download prebuilt bazel
+      id: download-artifact
+      uses: dawidd6/action-download-artifact@v2.28.0
+      with:
+        github_token: ${{secrets.GITHUB_TOKEN}}
+        workflow: ci.yml
+        workflow_conclusion: success
+        branch: ci
+        event: push
+        name: bazel
+        repo: https://github.com/PikachuHyA/bazel.git
+        check_artifacts: true
+        allow_forks: false
+    - name: Check prebuilt bazel
       run: |
-        wget https://github.com/PikachuHyA/async_simple/releases/download/tmp/bazel
         chmod +x bazel
         sudo cp bazel /usr/bin
       working-directory: ${{github.workspace}}
