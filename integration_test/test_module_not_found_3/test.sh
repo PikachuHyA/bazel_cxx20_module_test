@@ -12,7 +12,7 @@ sed -i "s|foo2|foo|g" foo.cppm
 }
 
 bazel build :all -s >> test.log.tmp 2>&1
-cat test.log.tmp | grep "fatal error: module 'foo' not found" >> /dev/null
+cat test.log.tmp | grep "ERROR: Module not found: foo" >> /dev/null
 
 
 if test $? -eq 0
@@ -23,6 +23,6 @@ then
 else
     restore_change
     echo -e "\033[31mFAIL\033[0m $case_name"
-    echo "message fatal error: module 'foo' not found not found"
+    echo "message 'ERROR: Module not found: foo' not found"
     exit 1
 fi
