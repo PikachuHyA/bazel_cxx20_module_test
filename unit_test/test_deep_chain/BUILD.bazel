@@ -1,14 +1,14 @@
 cc_library(
     name = "a",
     copts = ["-std=c++20"],
-    features = ["cpp20_module"],
+    features = ["cpp_modules"],
     module_interfaces = ["a.cxx"],
 )
 
 cc_library(
     name = "b",
     copts = ["-std=c++20"],
-    features = ["cpp20_module"],
+    features = ["cpp_modules"],
     module_interfaces = ["b.cxx"],
     deps = [":a"],
 )
@@ -16,7 +16,7 @@ cc_library(
 cc_library(
     name = "c",
     copts = ["-std=c++20"],
-    features = ["cpp20_module"],
+    features = ["cpp_modules"],
     module_interfaces = ["c.cxx"],
     deps = [":b"],
 )
@@ -24,7 +24,7 @@ cc_library(
 cc_library(
     name = "d",
     copts = ["-std=c++20"],
-    features = ["cpp20_module"],
+    features = ["cpp_modules"],
     module_interfaces = ["d.cxx"],
     deps = [":c"],
 )
@@ -32,7 +32,7 @@ cc_library(
 cc_library(
     name = "e",
     copts = ["-std=c++20"],
-    features = ["cpp20_module"],
+    features = ["cpp_modules"],
     module_interfaces = ["e.cxx"],
     deps = [":d"],
 )
@@ -41,6 +41,6 @@ cc_test(
     name = "demo",
     srcs = ["main.cxx"],
     copts = ["-std=c++20"],
-    features = ["cpp20_module"],
+    features = ["cpp_modules"],
     deps = [":e"],
 )

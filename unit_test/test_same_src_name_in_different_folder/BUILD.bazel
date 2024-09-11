@@ -2,7 +2,7 @@ cc_test(
     name = "demo",
     srcs = ["main.cxx"],
     copts = ["-std=c++20"],
-    features = ["cpp20_module"],
+    features = ["cpp_modules"],
     module_interfaces = [
         "a/same.cxx",
         "b/same.cxx",

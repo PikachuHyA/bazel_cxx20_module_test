@@ -1,14 +1,14 @@
 cc_library(
     name = "foo",
     copts = ["-std=c++20"],
-    features = ["cpp20_module"],
+    features = ["cpp_modules"],
     module_interfaces = ["foo.cppm"],
 )
 
 cc_library(
     name = "lib",
     copts = ["-std=c++20"],
-    features = ["cpp20_module"],
+    features = ["cpp_modules"],
     deps = [":foo"],
 )
 
@@ -16,6 +16,6 @@ cc_binary(
     name = "demo",
     srcs = ["main.cc"],
     copts = ["-std=c++20"],
-    features = ["cpp20_module"],
+    features = ["cpp_modules"],
     deps = [":lib"],
 )
