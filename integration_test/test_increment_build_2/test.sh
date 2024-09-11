@@ -4,12 +4,14 @@ bazel clean        >> test.log 2>&1
 bazel build :all   >> test.log 2>&1
 
 sed -i "s|foo|foo2|g" foo.cppm
+sed -i "s|foo|foo2|g" bar.cppm
 sed -i "s|foo|foo2|g" main.cc
 
 restore_change() {
 cat test.log.tmp >> test.log
 rm -rf test.log.tmp
 sed -i "s|foo2|foo|g" foo.cppm
+sed -i "s|foo2|foo|g" bar.cppm
 sed -i "s|foo2|foo|g" main.cc
 }
 
