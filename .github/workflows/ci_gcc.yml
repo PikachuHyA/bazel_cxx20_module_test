@@ -1,0 +1,56 @@
+name: Bazel GCC
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Mount bazel cache
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.cache/bazel
+        key: ${{ runner.os }}-bazel-${{ hashFiles('.bazelversion', '.bazelrc', 'WORKSPACE', 'WORKSPACE.bazel', 'MODULE.bazel') }}
+        restore-keys: |
+          ${{ runner.os }}-bazel-
+      
+    - name: deps
+      run: |
+           sudo apt-get install -y libaio-dev libgtest-dev libgmock-dev
+
+    - name: Remove GCC 12
+      run: |
+        sudo apt-get remove gcc-12 -y
+        sudo rm -rf /usr/lib/gcc/x86_64-linux-gnu/12
+    - name: Remove old bazel
+      run: |
+        sudo rm -rf `which bazel`
+
+    - name: Install GCC 14
+      run: |
+        sudo install gcc-14 -y
+    - name: Check GCC 14
+      run: gcc-14 -v
+
+    - name: Download prebuilt bazel
+      run: |
+        wget https://github.com/PikachuHyA/async_simple/releases/download/bazel/bazel
+        chmod +x bazel
+        sudo cp bazel /usr/bin
+      working-directory: ${{github.workspace}}
+
+    - name: Build unit_test
+      working-directory: ${{github.workspace}}
+      run: ./bazel build --action_env=CC=/usr/bin/gcc-14 unit_test/...
+
+    - name: Test unit_test
+      working-directory: ${{github.workspace}}
+      run: ./bazel test --action_env=CC=/usr/bin/gcc-14 --test_output=errors unit_test/...
