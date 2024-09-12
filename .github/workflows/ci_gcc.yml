@@ -36,7 +36,7 @@ jobs:
 
     - name: Install GCC 14
       run: |
-        sudo install gcc-14 -y
+        sudo apt-get install gcc-14 -y
     - name: Check GCC 14
       run: gcc-14 -v
 
